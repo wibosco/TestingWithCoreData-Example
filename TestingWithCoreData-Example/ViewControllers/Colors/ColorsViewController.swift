@@ -13,10 +13,9 @@ class ColorsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var colors = [Color]()
-    private var colorsDataManager: ColorsDataManager!
+    private var colorsDataManager = ColorsDataManager()
     
-    private var flowLayout: UICollectionViewFlowLayout {
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()
         
         let sideLength = (collectionView.frame.size.width - 4.0)/3
@@ -27,16 +26,37 @@ class ColorsViewController: UIViewController {
         flowLayout.minimumLineSpacing = 2.0
  
         return flowLayout
-    }
+    }()
+    
+    private lazy var fetchedResultsControllerDelegateHandler: CollectionViewFetchedResultsControllerDelegateHandler = {
+        return CollectionViewFetchedResultsControllerDelegateHandler(collectionView: self.collectionView)
+    }()
+
+    private lazy var fetchedResultsController: NSFetchedResultsController<Color> = {
+        let fetchRequest = NSFetchRequest<Color>(entityName: Color.className)
+        
+        let sortDescriptor = NSSortDescriptor(key: "dateCreated", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self.fetchedResultsControllerDelegateHandler
+        
+        return fetchedResultsController
+    }()
+    
+    private lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        return dateFormatter
+    }()
     
     // MARK: - ViewLifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colorsDataManager = ColorsDataManager()
-        
-        loadData()
+        try! self.fetchedResultsController.performFetch()
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,32 +67,29 @@ class ColorsViewController: UIViewController {
     // MARK: - ButtonActions
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        colorsDataManager.insertColor()
-        loadData()
-    }
-    
-    // MARK: - Load
-    
-    func loadData() {
-        colors = colorsDataManager.colors()
-        collectionView.reloadData()
+        colorsDataManager.createColor()
     }
 }
 
 extension ColorsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard  let colors = fetchedResultsController.fetchedObjects else {
+            fatalError("no colors to show")
+        }
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.reuseIdentifier, for: indexPath) as? ColorCollectionViewCell else {
             fatalError("Unable cell type")
         }
+        
         let color = colors[indexPath.row]
 
         cell.backgroundColor = UIColor.colorWithHex(hexColor: color.hex!)
-        cell.label.text = "\(indexPath.row)"
+        cell.dateLabel.text = dateFormatter.string(from: color.dateCreated!)
         
         return cell
     }

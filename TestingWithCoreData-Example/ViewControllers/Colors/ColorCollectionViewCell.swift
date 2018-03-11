@@ -11,5 +11,5 @@ import UIKit
 class ColorCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "ColorCollectionViewCellIdentifier"
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 }

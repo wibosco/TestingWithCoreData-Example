@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DEFB2872051D69400BB7785 /* TestingWithCoreData_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2862051D69400BB7785 /* TestingWithCoreData_ExampleTests.swift */; };
+		3D5245CD20541D3100F1E9B5 /* NSObject+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */; };
+		3D9BA5A32055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */; };
+		3D9C5CB52054A675007CF294 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C5CB22054A675007CF294 /* CoreDataTestStack.swift */; };
+		3D9C5CB62054A675007CF294 /* ColorsDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */; };
 		3DEFB29F2051D77000BB7785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DEFB2922051D77000BB7785 /* Assets.xcassets */; };
 		3DEFB2A42051D77000BB7785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB29D2051D77000BB7785 /* AppDelegate.swift */; };
 		3DEFB2E320533CC000BB7785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DEFB2DD20533CC000BB7785 /* LaunchScreen.storyboard */; };
@@ -35,9 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Name.swift"; sourceTree = "<group>"; };
+		3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewFetchedResultsControllerDelegateHandler.swift; sourceTree = "<group>"; };
+		3D9C5CB22054A675007CF294 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
+		3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsDataManagerTests.swift; sourceTree = "<group>"; };
 		3DEFB26C2051D69400BB7785 /* TestingWithCoreData-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestingWithCoreData-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEFB2822051D69400BB7785 /* TestingWithCoreData-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TestingWithCoreData-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DEFB2862051D69400BB7785 /* TestingWithCoreData_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingWithCoreData_ExampleTests.swift; sourceTree = "<group>"; };
 		3DEFB2882051D69400BB7785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DEFB2922051D77000BB7785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DEFB29D2051D77000BB7785 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +80,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D5245CB20541D3100F1E9B5 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		3D9BA5A12055A24F005112E9 /* FRCs */ = {
+			isa = PBXGroup;
+			children = (
+				3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */,
+			);
+			path = FRCs;
+			sourceTree = "<group>";
+		};
+		3D9C5CB12054A675007CF294 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3D9C5CB22054A675007CF294 /* CoreDataTestStack.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3D9C5CB32054A675007CF294 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		3DEFB2632051D69400BB7785 = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +146,8 @@
 		3DEFB2852051D69400BB7785 /* TestingWithCoreData-ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				3DEFB2862051D69400BB7785 /* TestingWithCoreData_ExampleTests.swift */,
+				3D9C5CB12054A675007CF294 /* Helpers */,
+				3D9C5CB32054A675007CF294 /* Tests */,
 				3DEFB2882051D69400BB7785 /* Info.plist */,
 			);
 			path = "TestingWithCoreData-ExampleTests";
@@ -171,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				3DEFB2ED20533D6D00BB7785 /* CGFloat */,
+				3D5245CB20541D3100F1E9B5 /* NSObject */,
 				3DEFB2EA20533D6D00BB7785 /* UIColor */,
 			);
 			path = Extensions;
@@ -206,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */,
+				3D9BA5A12055A24F005112E9 /* FRCs */,
 				3DEFB2FE2053467500BB7785 /* Model */,
 			);
 			path = CoreData;
@@ -334,12 +375,14 @@
 				3DEFB2F220533D6D00BB7785 /* UIColor+Random.swift in Sources */,
 				3DEFB2F120533D6D00BB7785 /* UIColor+Hex.swift in Sources */,
 				3DEFB3042053469A00BB7785 /* ColorsDataManager.swift in Sources */,
+				3D9BA5A32055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift in Sources */,
 				3DEFB2A42051D77000BB7785 /* AppDelegate.swift in Sources */,
 				3DEFB3012053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel in Sources */,
 				3DEFB2F320533D6D00BB7785 /* CGFloat+Random.swift in Sources */,
 				3DEFB2E820533D2100BB7785 /* AppLoadingViewController.swift in Sources */,
 				3DEFB2F9205340D700BB7785 /* ColorCollectionViewCell.swift in Sources */,
 				3DEFB3002053467500BB7785 /* CoreDataManager.swift in Sources */,
+				3D5245CD20541D3100F1E9B5 /* NSObject+Name.swift in Sources */,
 				3DEFB2F720533E8600BB7785 /* ColorsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,7 +391,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DEFB2872051D69400BB7785 /* TestingWithCoreData_ExampleTests.swift in Sources */,
+				3D9C5CB52054A675007CF294 /* CoreDataTestStack.swift in Sources */,
+				3D9C5CB62054A675007CF294 /* ColorsDataManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

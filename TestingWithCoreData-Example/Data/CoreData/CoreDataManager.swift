@@ -41,11 +41,11 @@ class CoreDataManager {
     
     // MARK: - SetUp
     
-    func setup(storeType: String = NSSQLiteStoreType, completion: @escaping () -> Void) {
+    func setup(storeType: String = NSSQLiteStoreType, completion: (() -> Void)?) {
         self.storeType = storeType
         
         loadPersistentStore {
-            completion()
+            completion?()
         }
     }
     

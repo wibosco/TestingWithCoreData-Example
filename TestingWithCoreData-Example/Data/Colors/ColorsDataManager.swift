@@ -11,8 +11,8 @@ import CoreData
 
 class ColorsDataManager {
  
-    private let mainContext: NSManagedObjectContext
-    private let backgroundContext: NSManagedObjectContext
+    let mainContext: NSManagedObjectContext
+    let backgroundContext: NSManagedObjectContext
     
     // MARK: - Init
     
@@ -24,8 +24,8 @@ class ColorsDataManager {
     // MARK: - Colors
     
     func colors() -> [Color] {
-        let request = NSFetchRequest<Color>.init(entityName: "Color")
-        let dateSort = NSSortDescriptor(key: "date", ascending: false)
+        let request = NSFetchRequest<Color>.init(entityName: Color.className)
+        let dateSort = NSSortDescriptor(key: "dateCreated", ascending: false)
         request.sortDescriptors = [dateSort]
 
         return try! mainContext.fetch(request)
@@ -33,11 +33,11 @@ class ColorsDataManager {
     
     // MARK: - Create
     
-    func insertColor() {
+    func createColor() {
         backgroundContext.performAndWait {
-            let color = NSEntityDescription.insertNewObject(forEntityName: "Color", into: backgroundContext) as! Color
+            let color = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: backgroundContext) as! Color
             color.hex = UIColor.random.hexString
-            color.date = Date()
+            color.dateCreated = Date()
             
             try! backgroundContext.save()
         }

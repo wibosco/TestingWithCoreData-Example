@@ -52,14 +52,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="129" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg6-wa-AtV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xg6-wa-AtV">
                                                     <rect key="frame" x="8" y="8" width="113" height="102"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" red="0.36137006073908795" green="1" blue="0.2224071842706058" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="Xg6-wa-AtV" firstAttribute="top" secondItem="rRq-wp-3mF" secondAttribute="topMargin" id="3Vf-G1-GmH"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="Xg6-wa-AtV" secondAttribute="bottom" id="Ouj-O2-CH9"/>
@@ -67,7 +68,7 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="Xg6-wa-AtV" secondAttribute="trailing" id="j5D-E7-hBF"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="label" destination="Xg6-wa-AtV" id="UgZ-qv-eV6"/>
+                                            <outlet property="dateLabel" destination="Xg6-wa-AtV" id="UgZ-qv-eV6"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
