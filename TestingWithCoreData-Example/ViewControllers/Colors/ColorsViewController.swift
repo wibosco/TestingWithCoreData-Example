@@ -97,4 +97,11 @@ extension ColorsViewController: UICollectionViewDataSource {
 
 extension ColorsViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let color = fetchedResultsController.fetchedObjects?[indexPath.row] else {
+            return
+        }
+        
+        colorsDataManager.deleteColor(color: color)
+    }
 }
