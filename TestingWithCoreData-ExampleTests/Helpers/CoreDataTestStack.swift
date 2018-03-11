@@ -35,42 +35,6 @@ class CoreDataTestStack {
         backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         backgroundContext.parent = self.mainContext
     }
-    
-//    var persistentContainer: NSPersistentContainer {
-//        get {
-//            let persistentContainer = NSPersistentContainer(name: "TestingWithCoreData_Example")
-//            let description = persistentContainer.persistentStoreDescriptions.first
-//            description?.type = NSInMemoryStoreType
-//
-//            persistentContainer.loadPersistentStores { description, error in
-//                guard error == nil else {
-//                    fatalError("was unable to load store \(error!)")
-//                }
-//            }
-//
-//            return persistentContainer
-//        }
-//    }
-//
-//    var backgroundContext: NSManagedObjectContextSpy {
-//        get {
-//            let context = NSManagedObjectContextSpy(concurrencyType: .privateQueueConcurrencyType)
-//            context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//            context.parent = self.mainContext
-//
-//            return context
-//        }
-//    }
-//
-//    var mainContext: NSManagedObjectContextSpy {
-//        get {
-//            let context = NSManagedObjectContextSpy(concurrencyType: .mainQueueConcurrencyType)
-//            context.automaticallyMergesChangesFromParent = true
-//            context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
-//
-//            return context
-//        }
-//    }
 }
 
 class NSManagedObjectContextSpy: NSManagedObjectContext {

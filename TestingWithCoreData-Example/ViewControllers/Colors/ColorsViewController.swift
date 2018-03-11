@@ -78,16 +78,14 @@ extension ColorsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard  let colors = fetchedResultsController.fetchedObjects else {
-            fatalError("no colors to show")
+        guard  let color = fetchedResultsController.fetchedObjects?[indexPath.row] else {
+            fatalError("no color to show for indexPath: \(indexPath)")
         }
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.reuseIdentifier, for: indexPath) as? ColorCollectionViewCell else {
             fatalError("Unable cell type")
         }
         
-        let color = colors[indexPath.row]
-
         cell.backgroundColor = UIColor.colorWithHex(hexColor: color.hex!)
         cell.dateLabel.text = dateFormatter.string(from: color.dateCreated!)
         
