@@ -43,35 +43,6 @@ class ColorsDataManagerTests: XCTestCase {
         XCTAssertEqual(sut.mainContext, mainContext)
     }
     
-    // MARK: Colors
-    
-    func test_colors_returnAll() {
-        _ = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.mainContext)
-        _ = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.mainContext)
-        
-        let colors = sut.colors()
-        
-        XCTAssertEqual(colors.count, 2)
-    }
-    
-    func test_colors_orderedByDate() {
-        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.mainContext) as! Color
-        colorA.dateCreated = Date.distantPast
-        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.mainContext) as! Color
-        colorB.dateCreated = Date.distantFuture
-        
-        let colors = sut.colors()
-        
-        XCTAssertEqual(colors[0], colorB)
-        XCTAssertEqual(colors[1], colorA)
-    }
-    
-    func test_colors_returnEmpty() {
-        let colors = sut.colors()
-        
-        XCTAssertEqual(colors.count, 0)
-    }
-    
     // MARK: Create
     
     func test_createColor_colorCreated() {

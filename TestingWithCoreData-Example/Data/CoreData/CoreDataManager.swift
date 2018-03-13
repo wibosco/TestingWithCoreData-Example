@@ -52,7 +52,7 @@ class CoreDataManager {
     // MARK: - Loading
     
     private func loadPersistentStore(completion: @escaping () -> Void) {
-        self.persistentContainer.loadPersistentStores { description, error in
+        persistentContainer.loadPersistentStores { description, error in
             guard error == nil else {
                 fatalError("was unable to load store \(error!)")
             }

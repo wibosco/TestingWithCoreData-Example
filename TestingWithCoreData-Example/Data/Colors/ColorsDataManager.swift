@@ -21,16 +21,6 @@ class ColorsDataManager {
         self.backgroundContext = backgroundContext
     }
     
-    // MARK: - Colors
-    
-    func colors() -> [Color] {
-        let request = NSFetchRequest<Color>.init(entityName: Color.className)
-        let dateSort = NSSortDescriptor(key: "dateCreated", ascending: false)
-        request.sortDescriptors = [dateSort]
-
-        return try! mainContext.fetch(request)
-    }
-    
     // MARK: - Create
     
     func createColor() {
