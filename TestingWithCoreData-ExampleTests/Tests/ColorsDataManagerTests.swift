@@ -31,7 +31,7 @@ class ColorsDataManagerTests: XCTestCase {
         backgroundContext = coreDataStack.backgroundContext
         mainContext = coreDataStack.mainContext
 
-        sut = ColorsDataManager(mainContext: mainContext, backgroundContext: backgroundContext)
+        sut = ColorsDataManager(backgroundContext: backgroundContext)
     }
     
     // MARK: - Tests
@@ -40,7 +40,6 @@ class ColorsDataManagerTests: XCTestCase {
     
     func test_init_contexts() {
         XCTAssertEqual(sut.backgroundContext, backgroundContext)
-        XCTAssertEqual(sut.mainContext, mainContext)
     }
     
     // MARK: Create
@@ -53,7 +52,7 @@ class ColorsDataManagerTests: XCTestCase {
         
         waitForExpectations(timeout: 1) { (_) in
             let request = NSFetchRequest<Color>.init(entityName: Color.className)
-            let colors = try! self.mainContext.fetch(request)
+            let colors = try! self.backgroundContext.fetch(request)
             
             guard let color = colors.first else {
                 XCTFail("color missing")
@@ -80,10 +79,9 @@ class ColorsDataManagerTests: XCTestCase {
         waitForExpectations(timeout: 1) { (_) in
             let request = NSFetchRequest<Color>.init(entityName: Color.className)
             let backgroundContextColors = try! self.mainContext.fetch(request)
-            let mainContextColors = try! self.mainContext.fetch(request)
             
             XCTAssertEqual(backgroundContextColors.count, 0)
-            XCTAssertEqual(mainContextColors.count, 0)
+            XCTAssertTrue(self.backgroundContext.saveWasCalled)
         }
     }
 }

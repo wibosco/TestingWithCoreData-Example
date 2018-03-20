@@ -31,11 +31,23 @@ class CoreDataManagerTests: XCTestCase {
     func test_setup_completionCalled() {
         let setupExpectation = expectation(description: "set up completion called")
         
-        sut.setup {
+        sut.setup(storeType: NSInMemoryStoreType) {
             setupExpectation.fulfill()
         }
         
         wait(for: [setupExpectation], timeout: 1.0)
+    }
+    
+    func test_setup_persistentStoreCreated() {
+       let setupExpectation = expectation(description: "set up completion called")
+        
+        sut.setup(storeType: NSInMemoryStoreType) {
+            setupExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1.0) { (_) in
+            XCTAssertTrue(self.sut.persistentContainer.persistentStoreCoordinator.persistentStores.count > 0)
+        }
     }
     
     func test_setup_persistentContainerLoadedOnDisk() {

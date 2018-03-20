@@ -11,13 +11,11 @@ import CoreData
 
 class ColorsDataManager {
  
-    let mainContext: NSManagedObjectContext
     let backgroundContext: NSManagedObjectContext
     
     // MARK: - Init
     
-    init(mainContext: NSManagedObjectContext = CoreDataManager.shared.mainContext, backgroundContext: NSManagedObjectContext = CoreDataManager.shared.mainContext) {
-        self.mainContext = mainContext
+    init(backgroundContext: NSManagedObjectContext = CoreDataManager.shared.backgroundContext) {
         self.backgroundContext = backgroundContext
     }
     
