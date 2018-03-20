@@ -16,9 +16,6 @@ class ColorsDataManagerTests: XCTestCase {
     
     var sut: ColorsDataManager!
     
-    var backgroundContext: NSManagedObjectContextSpy!
-    var mainContext: NSManagedObjectContextSpy!
-
     var coreDataStack: CoreDataTestStack!
     
     // MARK: - Lifecycle
@@ -28,10 +25,7 @@ class ColorsDataManagerTests: XCTestCase {
         
         coreDataStack = CoreDataTestStack()
         
-        backgroundContext = coreDataStack.backgroundContext
-        mainContext = coreDataStack.mainContext
-
-        sut = ColorsDataManager(backgroundContext: backgroundContext)
+        sut = ColorsDataManager(backgroundContext: coreDataStack.backgroundContext)
     }
     
     // MARK: - Tests
@@ -39,20 +33,20 @@ class ColorsDataManagerTests: XCTestCase {
     // MARK: Init
     
     func test_init_contexts() {
-        XCTAssertEqual(sut.backgroundContext, backgroundContext)
+        XCTAssertEqual(sut.backgroundContext, coreDataStack.backgroundContext)
     }
     
     // MARK: Create
     
     func test_createColor_colorCreated() {
         let performAndWaitExpectation = expectation(description: "background perform and wait")
-        backgroundContext.expectation = performAndWaitExpectation
+        coreDataStack.backgroundContext.expectation = performAndWaitExpectation
         
         sut.createColor()
         
         waitForExpectations(timeout: 1) { (_) in
             let request = NSFetchRequest<Color>.init(entityName: Color.className)
-            let colors = try! self.backgroundContext.fetch(request)
+            let colors = try! self.coreDataStack.backgroundContext.fetch(request)
             
             guard let color = colors.first else {
                 XCTFail("color missing")
@@ -62,7 +56,7 @@ class ColorsDataManagerTests: XCTestCase {
             XCTAssertEqual(colors.count, 1)
             XCTAssertNotNil(color.hex)
             XCTAssertEqual(color.dateCreated?.timeIntervalSinceNow ?? 0, Date().timeIntervalSinceNow, accuracy: 0.1)
-            XCTAssertTrue(self.backgroundContext.saveWasCalled)
+            XCTAssertTrue(self.coreDataStack.backgroundContext.saveWasCalled)
         }
     }
     
@@ -70,18 +64,18 @@ class ColorsDataManagerTests: XCTestCase {
     
     func test_deleteColor_colorDeleted() {
         let performAndWaitExpectation = expectation(description: "background perform and wait")
-        backgroundContext.expectation = performAndWaitExpectation
+        coreDataStack.backgroundContext.expectation = performAndWaitExpectation
         
-        let color = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.backgroundContext) as! Color
+        let color = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.coreDataStack.backgroundContext) as! Color
         
         sut.deleteColor(color: color)
         
         waitForExpectations(timeout: 1) { (_) in
             let request = NSFetchRequest<Color>.init(entityName: Color.className)
-            let backgroundContextColors = try! self.mainContext.fetch(request)
+            let backgroundContextColors = try! self.coreDataStack.backgroundContext.fetch(request)
             
             XCTAssertEqual(backgroundContextColors.count, 0)
-            XCTAssertTrue(self.backgroundContext.saveWasCalled)
+            XCTAssertTrue(self.coreDataStack.backgroundContext.saveWasCalled)
         }
     }
 }
