@@ -53,6 +53,8 @@ class NSManagedObjectContextSpy: NSManagedObjectContext {
     // MARK: - Save
     
     override func save() throws {
+        try super.save()
+        
         saveWasCalled = true
     }
 }
