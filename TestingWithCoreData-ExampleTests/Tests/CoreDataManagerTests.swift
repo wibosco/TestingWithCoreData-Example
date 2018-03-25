@@ -59,6 +59,10 @@ class CoreDataManagerTests: XCTestCase {
         }
         
         wait(for: [setupExpectation], timeout: 1.0)
+        
+        waitForExpectations(timeout: 1.0) { (_) in
+            self.sut.destroySQLitePersistentStore()
+        }
     }
     
     func test_setup_persistentContainerLoadedInMemory() {
