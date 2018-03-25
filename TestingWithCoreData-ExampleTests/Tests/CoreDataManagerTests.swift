@@ -61,7 +61,7 @@ class CoreDataManagerTests: XCTestCase {
         wait(for: [setupExpectation], timeout: 1.0)
         
         waitForExpectations(timeout: 1.0) { (_) in
-            self.sut.destroySQLitePersistentStore()
+            self.sut.persistentContainer.destroyPersistentStore()
         }
     }
     
