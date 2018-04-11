@@ -35,7 +35,7 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        wait(for: [setupExpectation], timeout: 1.0)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
     
     func test_setup_persistentStoreCreated() {
@@ -58,8 +58,6 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        wait(for: [setupExpectation], timeout: 1.0)
-        
         waitForExpectations(timeout: 1.0) { (_) in
             self.sut.persistentContainer.destroyPersistentStore()
         }
@@ -73,7 +71,7 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        wait(for: [setupExpectation], timeout: 1.0)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
     
     // MARK: Contexts
@@ -86,7 +84,7 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        wait(for: [setupExpectation], timeout: 1.0)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
     
     func test_mainContext_concurrencyType() {
@@ -97,6 +95,6 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        wait(for: [setupExpectation], timeout: 1.0)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
