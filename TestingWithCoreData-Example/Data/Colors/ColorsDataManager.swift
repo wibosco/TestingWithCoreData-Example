@@ -34,10 +34,12 @@ class ColorsDataManager {
     // MARK: - Deletion
     
     func deleteColor(color: Color) {
+        let objectID = color.objectID
         backgroundContext.performAndWait {
-            backgroundContext.delete(color)
-            
-            try! backgroundContext.save()
+            if let colorInContext = try? backgroundContext.existingObject(with: objectID) {
+                backgroundContext.delete(colorInContext)
+                try? backgroundContext.save()
+            }
         }
     }
 }
