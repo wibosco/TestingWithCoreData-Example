@@ -82,4 +82,27 @@ class ColorsDataManagerTests: XCTestCase {
             XCTAssertTrue(self.coreDataStack.backgroundContext.saveWasCalled)
         }
     }
+    
+    func test_deleteColor_switchingContexts_colorDeleted() {
+        let performAndWaitExpectation = expectation(description: "background perform and wait")
+        coreDataStack.backgroundContext.expectation = performAndWaitExpectation
+        
+        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.coreDataStack.backgroundContext) as! Color
+        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.coreDataStack.backgroundContext) as! Color
+        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: self.coreDataStack.backgroundContext) as! Color
+        
+        let mainContextColor = coreDataStack.mainContext.object(with: colorB.objectID) as! Color
+        
+        sut.deleteColor(color: mainContextColor)
+        
+        waitForExpectations(timeout: 1) { (_) in
+            let request = NSFetchRequest<Color>.init(entityName: Color.className)
+            let backgroundContextColors = try! self.coreDataStack.backgroundContext.fetch(request)
+            
+            XCTAssertEqual(backgroundContextColors.count, 2)
+            XCTAssertTrue(backgroundContextColors.contains(colorA))
+            XCTAssertTrue(backgroundContextColors.contains(colorC))
+            XCTAssertTrue(self.coreDataStack.backgroundContext.saveWasCalled)
+        }
+    }
 }
