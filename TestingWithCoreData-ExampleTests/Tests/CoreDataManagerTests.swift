@@ -22,17 +22,17 @@ class CoreDataManagerTests: XCTestCase {
         sut = CoreDataManager()
     }
     
-    override func tearDown() {
+    override func tearDownWithError() throws {
         super.tearDown()
         
-        sut.persistentContainer.destroyPersistentStore()
+        try sut.persistentContainer.destroyPersistentStore()
     }
     
     // MARK: - Tests
     
     // MARK: Setup
 
-    func test_givenAFreshStack_whenSetupFinishes_thenCompletionIsCalled() {
+    func test_givenNoSetup_whenSetupFinishes_thenCompletionIsCalled() {
         let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup(storeType: NSInMemoryStoreType) {
@@ -94,6 +94,29 @@ class CoreDataManagerTests: XCTestCase {
         
         sut.setup(storeType: NSInMemoryStoreType) {
             XCTAssertEqual(self.sut.mainContext.concurrencyType, .mainQueueConcurrencyType)
+            setupExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1.0)
+    }
+    
+    func test_givenASetUpStack_thenBackgroundContextMergePolicyIsPropertyObjectTrump() {
+        let setupExpectation = expectation(description: "set up completion called")
+        
+        sut.setup(storeType: NSInMemoryStoreType) {
+            XCTAssertTrue(self.sut.backgroundContext.mergePolicy is NSMergePolicy)
+            XCTAssertEqual((self.sut.backgroundContext.mergePolicy as? NSMergePolicy)?.mergeType, .mergeByPropertyObjectTrumpMergePolicyType)
+            setupExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1.0)
+    }
+
+    func test_givenASetUpStack_thenMainContextAutomaticallyMergesChangesFromParent() {
+        let setupExpectation = expectation(description: "set up completion called")
+        
+        sut.setup(storeType: NSInMemoryStoreType) {
+            XCTAssertTrue(self.sut.mainContext.automaticallyMergesChangesFromParent)
             setupExpectation.fulfill()
         }
         

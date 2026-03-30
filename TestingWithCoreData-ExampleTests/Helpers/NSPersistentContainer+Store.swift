@@ -12,17 +12,14 @@ import CoreData
 @testable import TestingWithCoreData_Example
 
 extension NSPersistentContainer {
-    func destroyPersistentStore() {
+    func destroyPersistentStore() throws {
         guard let storeURL = persistentStoreDescriptions.first?.url,
-            let storeType = persistentStoreDescriptions.first?.type else {
+              let storeType = persistentStoreDescriptions.first?.type else {
             return
         }
         
-        do {
-            let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: NSManagedObjectModel())
-            try persistentStoreCoordinator.destroyPersistentStore(at: storeURL, ofType: storeType, options: nil)
-        } catch let error {
-            print("failed to destroy persistent store at \(storeURL), error: \(error)")
-        }
+        try persistentStoreCoordinator.destroyPersistentStore(at: storeURL,
+                                                              ofType: storeType,
+                                                              options: nil)
     }
 }

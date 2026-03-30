@@ -1,5 +1,5 @@
 //
-//  CoreDataHelpers.swift
+//  TestCoreDataStack.swift
 //  TestingWithCoreData-ExampleTests
 //
 //  Created by William Boles on 10/03/2018.
@@ -11,11 +11,10 @@ import CoreData
 
 @testable import TestingWithCoreData_Example
 
-class CoreDataTestStack {
-    
+class TestCoreDataStack {
     let persistentContainer: NSPersistentContainer
-    let backgroundContext: NSManagedObjectContextSpy
-    let mainContext: NSManagedObjectContextSpy
+    let backgroundContext: NSManagedObjectContext
+    let mainContext: NSManagedObjectContext
     
     init() {
         persistentContainer = NSPersistentContainer(name: "TestingWithCoreData_Example")
@@ -28,11 +27,11 @@ class CoreDataTestStack {
             }
         }
         
-        mainContext = NSManagedObjectContextSpy(concurrencyType: .mainQueueConcurrencyType)
+        mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         mainContext.automaticallyMergesChangesFromParent = true
         mainContext.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
         
-        backgroundContext = NSManagedObjectContextSpy(concurrencyType: .privateQueueConcurrencyType)
+        backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         backgroundContext.parent = self.mainContext
     }

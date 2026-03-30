@@ -13,7 +13,7 @@ class ColorsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var colorsDataManager = ColorsDataManager()
+    private var colorsDataManager = ColorManager()
     
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()

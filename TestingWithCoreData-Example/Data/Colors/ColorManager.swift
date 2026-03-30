@@ -9,8 +9,7 @@
 import UIKit
 import CoreData
 
-class ColorsDataManager {
- 
+class ColorManager {
     let backgroundContext: NSManagedObjectContext
     
     // MARK: - Init

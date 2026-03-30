@@ -11,7 +11,7 @@
 		3D5245CD20541D3100F1E9B5 /* NSObject+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */; };
 		3D7334212067B207002D8317 /* NSPersistentContainer+Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */; };
 		3D9BA5A32055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */; };
-		3D9C5CB62054A675007CF294 /* ColorsDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */; };
+		3D9C5CB62054A675007CF294 /* ColorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C5CB42054A675007CF294 /* ColorManagerTests.swift */; };
 		3DEFB29F2051D77000BB7785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DEFB2922051D77000BB7785 /* Assets.xcassets */; };
 		3DEFB2A42051D77000BB7785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB29D2051D77000BB7785 /* AppDelegate.swift */; };
 		3DEFB2E320533CC000BB7785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DEFB2DD20533CC000BB7785 /* LaunchScreen.storyboard */; };
@@ -25,9 +25,8 @@
 		3DEFB2F9205340D700BB7785 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2F8205340D700BB7785 /* ColorCollectionViewCell.swift */; };
 		3DEFB3002053467500BB7785 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */; };
 		3DEFB3012053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2FF2053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel */; };
-		3DEFB3042053469A00BB7785 /* ColorsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB3032053469A00BB7785 /* ColorsDataManager.swift */; };
-		438E64D92F7AC61A00317045 /* NSManagedObjectContextSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E64D72F7AC61A00317045 /* NSManagedObjectContextSpy.swift */; };
-		438E64DA2F7AC61A00317045 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E64D62F7AC61A00317045 /* CoreDataTestStack.swift */; };
+		3DEFB3042053469A00BB7785 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB3032053469A00BB7785 /* ColorManager.swift */; };
+		4364E6122F7ACF01000FC3F1 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364E6112F7ACF01000FC3F1 /* TestCoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,7 @@
 		3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Name.swift"; sourceTree = "<group>"; };
 		3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Store.swift"; sourceTree = "<group>"; };
 		3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewFetchedResultsControllerDelegateHandler.swift; sourceTree = "<group>"; };
-		3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsDataManagerTests.swift; sourceTree = "<group>"; };
+		3D9C5CB42054A675007CF294 /* ColorManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManagerTests.swift; sourceTree = "<group>"; };
 		3DEFB26C2051D69400BB7785 /* TestingWithCoreData-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestingWithCoreData-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEFB2822051D69400BB7785 /* TestingWithCoreData-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TestingWithCoreData-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEFB2882051D69400BB7785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,9 +62,8 @@
 		3DEFB2F8205340D700BB7785 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3DEFB2FF2053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestingWithCoreData_Example.xcdatamodel; sourceTree = "<group>"; };
-		3DEFB3032053469A00BB7785 /* ColorsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsDataManager.swift; sourceTree = "<group>"; };
-		438E64D62F7AC61A00317045 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
-		438E64D72F7AC61A00317045 /* NSManagedObjectContextSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextSpy.swift; sourceTree = "<group>"; };
+		3DEFB3032053469A00BB7785 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		4364E6112F7ACF01000FC3F1 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +103,7 @@
 		3D9C5CB12054A675007CF294 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4364E6112F7ACF01000FC3F1 /* TestCoreDataStack.swift */,
 				3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */,
 			);
 			path = Helpers;
@@ -113,7 +112,7 @@
 		3D9C5CB32054A675007CF294 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */,
+				3D9C5CB42054A675007CF294 /* ColorManagerTests.swift */,
 				3D1D9C5E20574757007C70D3 /* CoreDataManagerTests.swift */,
 			);
 			path = Tests;
@@ -153,7 +152,6 @@
 		3DEFB2852051D69400BB7785 /* TestingWithCoreData-ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				438E64D82F7AC61A00317045 /* Doubles */,
 				3D9C5CB12054A675007CF294 /* Helpers */,
 				3D9C5CB32054A675007CF294 /* Tests */,
 				3DEFB2882051D69400BB7785 /* Info.plist */,
@@ -271,18 +269,9 @@
 		3DEFB3022053468600BB7785 /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				3DEFB3032053469A00BB7785 /* ColorsDataManager.swift */,
+				3DEFB3032053469A00BB7785 /* ColorManager.swift */,
 			);
 			path = Colors;
-			sourceTree = "<group>";
-		};
-		438E64D82F7AC61A00317045 /* Doubles */ = {
-			isa = PBXGroup;
-			children = (
-				438E64D62F7AC61A00317045 /* CoreDataTestStack.swift */,
-				438E64D72F7AC61A00317045 /* NSManagedObjectContextSpy.swift */,
-			);
-			path = Doubles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,7 +381,7 @@
 			files = (
 				3DEFB2F220533D6D00BB7785 /* UIColor+Random.swift in Sources */,
 				3DEFB2F120533D6D00BB7785 /* UIColor+Hex.swift in Sources */,
-				3DEFB3042053469A00BB7785 /* ColorsDataManager.swift in Sources */,
+				3DEFB3042053469A00BB7785 /* ColorManager.swift in Sources */,
 				3D9BA5A32055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift in Sources */,
 				3DEFB2A42051D77000BB7785 /* AppDelegate.swift in Sources */,
 				3DEFB3012053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel in Sources */,
@@ -410,10 +399,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D7334212067B207002D8317 /* NSPersistentContainer+Store.swift in Sources */,
+				4364E6122F7ACF01000FC3F1 /* TestCoreDataStack.swift in Sources */,
 				3D1D9C5F20574757007C70D3 /* CoreDataManagerTests.swift in Sources */,
-				3D9C5CB62054A675007CF294 /* ColorsDataManagerTests.swift in Sources */,
-				438E64D92F7AC61A00317045 /* NSManagedObjectContextSpy.swift in Sources */,
-				438E64DA2F7AC61A00317045 /* CoreDataTestStack.swift in Sources */,
+				3D9C5CB62054A675007CF294 /* ColorManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

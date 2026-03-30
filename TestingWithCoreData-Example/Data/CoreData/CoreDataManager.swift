@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    
     private var storeType: String!
     
     lazy var persistentContainer: NSPersistentContainer! = {

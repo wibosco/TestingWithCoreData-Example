@@ -3,4 +3,4 @@
 [![License](http://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://github.com/wibosco/TestingWithCoreData-Example/blob/main/LICENSE)
 
 # TestingWithCoreData-Example
-An example project looking at how we can use Core Data in our unit tests as shown in this article - https://williamboles.com/can-unit-testing-and-core-data-become-bffs/
+An example project looking at how we can use Core Data in our unit tests as shown in this post - https://williamboles.com/can-unit-testing-and-core-data-become-bffs/
