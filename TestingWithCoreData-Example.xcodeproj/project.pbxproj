@@ -26,7 +26,7 @@
 		3DEFB3002053467500BB7785 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */; };
 		3DEFB3012053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2FF2053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel */; };
 		3DEFB3042053469A00BB7785 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB3032053469A00BB7785 /* ColorManager.swift */; };
-		4364E6122F7ACF01000FC3F1 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364E6112F7ACF01000FC3F1 /* TestCoreDataStack.swift */; };
+		4364E6142F7AEB0E000FC3F1 /* CoreDataManager+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364E6132F7AEB0E000FC3F1 /* CoreDataManager+Testing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,7 @@
 		3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3DEFB2FF2053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestingWithCoreData_Example.xcdatamodel; sourceTree = "<group>"; };
 		3DEFB3032053469A00BB7785 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
-		4364E6112F7ACF01000FC3F1 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		4364E6132F7AEB0E000FC3F1 /* CoreDataManager+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Testing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +103,8 @@
 		3D9C5CB12054A675007CF294 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4364E6112F7ACF01000FC3F1 /* TestCoreDataStack.swift */,
 				3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */,
+				4364E6132F7AEB0E000FC3F1 /* CoreDataManager+Testing.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -399,9 +399,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D7334212067B207002D8317 /* NSPersistentContainer+Store.swift in Sources */,
-				4364E6122F7ACF01000FC3F1 /* TestCoreDataStack.swift in Sources */,
 				3D1D9C5F20574757007C70D3 /* CoreDataManagerTests.swift in Sources */,
 				3D9C5CB62054A675007CF294 /* ColorManagerTests.swift in Sources */,
+				4364E6142F7AEB0E000FC3F1 /* CoreDataManager+Testing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

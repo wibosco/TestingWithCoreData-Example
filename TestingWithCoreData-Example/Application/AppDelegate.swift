@@ -12,11 +12,19 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var coreDataManager: CoreDataManager?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        CoreDataManager.shared.setup {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // just for example purposes
-                self.presentMainUI()
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        CoreDataManager.setUp { result in
+            switch result {
+            case .success(let manager):
+                self.coreDataManager = manager
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.presentMainUI()
+                }
+            case .failure(let error):
+                fatalError("was unable to load store \(error)")
             }
         }
         
@@ -24,17 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
-        
-        try? CoreDataManager.shared.mainContext.save()
+        try? coreDataManager?.mainContext.save()
     }
     
     // MARK: - Main
-    
+
     func presentMainUI() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        window?.rootViewController = mainStoryboard.instantiateInitialViewController()
+        
+        guard let navigationController = mainStoryboard.instantiateInitialViewController() as? UINavigationController,
+              let viewController = navigationController.topViewController as? ColorsViewController,
+              let coreDataManager = coreDataManager else {
+            return
+        }
+        
+        viewController.colorManager = ColorManager(backgroundContext: coreDataManager.backgroundContext)
+        viewController.mainContext = coreDataManager.mainContext
+        window?.rootViewController = navigationController
     }
 }
-

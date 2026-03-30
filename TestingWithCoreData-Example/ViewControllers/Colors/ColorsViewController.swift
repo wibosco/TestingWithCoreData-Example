@@ -10,10 +10,10 @@ import UIKit
 import CoreData
 
 class ColorsViewController: UIViewController {
-
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var colorsDataManager = ColorManager()
+    var colorManager: ColorManager!
+    var mainContext: NSManagedObjectContext!
     
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -38,7 +38,7 @@ class ColorsViewController: UIViewController {
         let sortDescriptor = NSSortDescriptor(key: "dateCreated", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self.fetchedResultsControllerDelegateHandler
         
         return fetchedResultsController
@@ -67,10 +67,9 @@ class ColorsViewController: UIViewController {
     // MARK: - ButtonActions
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        colorsDataManager.createColor()
+        colorManager.createColor()
     }
 }
-
 extension ColorsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,6 +99,6 @@ extension ColorsViewController: UICollectionViewDelegate {
             return
         }
         
-        colorsDataManager.deleteColor(color: color)
+        colorManager.deleteColor(color: color)
     }
 }

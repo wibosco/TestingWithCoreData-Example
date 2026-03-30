@@ -10,55 +10,39 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    private var storeType: String!
+    let persistentContainer: NSPersistentContainer
+    let backgroundContext: NSManagedObjectContext
+    let mainContext: NSManagedObjectContext
     
-    lazy var persistentContainer: NSPersistentContainer! = {
-        let persistentContainer = NSPersistentContainer(name: "TestingWithCoreData_Example")
-        let description = persistentContainer.persistentStoreDescriptions.first
-        description?.type = storeType
+    // MARK: - Init
+    
+    private init(persistentContainer: NSPersistentContainer) {
+        self.persistentContainer = persistentContainer
         
-        return persistentContainer
-    }()
-    
-    lazy var backgroundContext: NSManagedObjectContext = {
-        let context = self.persistentContainer.newBackgroundContext()
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        let backgroundContext = persistentContainer.newBackgroundContext()
+        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        self.backgroundContext = backgroundContext
         
-        return context
-    }()
-    
-    lazy var mainContext: NSManagedObjectContext = {
-        let context = self.persistentContainer.viewContext
-        context.automaticallyMergesChangesFromParent = true
-        
-        return context
-    }()
-    
-    // MARK: - Singleton
-    
-    static let shared = CoreDataManager()
+        let mainContext = persistentContainer.viewContext
+        mainContext.automaticallyMergesChangesFromParent = true
+        self.mainContext = mainContext
+    }
     
     // MARK: - SetUp
     
-    func setup(storeType: String = NSSQLiteStoreType, completion: (() -> Void)?) {
-        self.storeType = storeType
+    static func setUp(storeType: String = NSSQLiteStoreType,
+                      completion: @escaping (Result<CoreDataManager, Error>) -> Void) {
+        let container = NSPersistentContainer(name: "TestingWithCoreData_Example")
+        let description = container.persistentStoreDescriptions.first
+        description?.type = storeType
         
-        loadPersistentStore {
-            completion?()
-        }
-    }
-    
-    // MARK: - Loading
-    
-    private func loadPersistentStore(completion: @escaping () -> Void) {
-        //handle data migration here
-        persistentContainer.loadPersistentStores { description, error in
-            guard error == nil else {
-                fatalError("was unable to load store \(error!)")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
             }
             
-            completion()
+            completion(.success(CoreDataManager(persistentContainer: container)))
         }
     }
 }
-

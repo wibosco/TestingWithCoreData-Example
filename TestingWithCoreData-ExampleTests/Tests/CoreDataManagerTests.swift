@@ -12,65 +12,57 @@ import CoreData
 @testable import TestingWithCoreData_Example
 
 class CoreDataManagerTests: XCTestCase {
-    var sut: CoreDataManager!
-    
-    // MARK: - Lifecycle
-    
-    override func setUp() {
-        super.setUp()
-        
-        sut = CoreDataManager()
-    }
-    
-    override func tearDownWithError() throws {
-        super.tearDown()
-        
-        try sut.persistentContainer.destroyPersistentStore()
-    }
     
     // MARK: - Tests
     
     // MARK: Setup
-
-    func test_givenNoSetup_whenSetupFinishes_thenCompletionIsCalled() {
-        let setupExpectation = expectation(description: "set up completion called")
+    
+    func test_givenNoSetup_whenSetUpFinishes_thenCoreDataManagerIsCreated() {
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            setupExpectation.fulfill()
+        CoreDataManager.setUp(storeType: NSInMemoryStoreType) { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let _ = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
         }
         
         waitForExpectations(timeout: 1.0)
     }
     
-    func test_givenNoSetup_whenSetupFinishes_thenPersistentStoreIsCreated() {
-       let setupExpectation = expectation(description: "set up completion called")
+    func test_givenNoSetup_whenSetUpFinishes_thenPersistentContainerLoadedOnDisk() {
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            setupExpectation.fulfill()
-        }
-        
-        waitForExpectations(timeout: 1.0) { (_) in
-            XCTAssertTrue(self.sut.persistentContainer.persistentStoreCoordinator.persistentStores.count > 0)
-        }
-    }
-    
-    func test_givenNoSetup_whenSetupFinishes_thenPersistentContainerLoadedOnDisk() {
-        let setupExpectation = expectation(description: "set up completion called")
-        
-        sut.setup {
-            XCTAssertEqual(self.sut.persistentContainer.persistentStoreDescriptions.first?.type, NSSQLiteStoreType)
-            setupExpectation.fulfill()
+        CoreDataManager.setUp { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let sut = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
+            
+            XCTAssertEqual(sut.persistentContainer.persistentStoreDescriptions.first?.type, NSSQLiteStoreType)
+            
+            try? sut.persistentContainer.destroyPersistentStore()
         }
         
         waitForExpectations(timeout: 1.0)
     }
     
-    func test_givenNoSetup_whenSetupFinishes_thenPersistentContainerLoadedInMemory() {
-        let setupExpectation = expectation(description: "set up completion called")
+    func test_givenNoSetup_whenSetUpFinishes_thenPersistentContainerLoadedInMemory() {
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            XCTAssertEqual(self.sut.persistentContainer.persistentStoreDescriptions.first?.type, NSInMemoryStoreType)
-            setupExpectation.fulfill()
+        CoreDataManager.setUp(storeType: NSInMemoryStoreType) { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let sut = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
+            
+            XCTAssertEqual(sut.persistentContainer.persistentStoreDescriptions.first?.type, NSInMemoryStoreType)
         }
         
         waitForExpectations(timeout: 1.0)
@@ -79,45 +71,69 @@ class CoreDataManagerTests: XCTestCase {
     // MARK: Contexts
     
     func test_givenASetUpStack_thenBackgroundContextIsAPrivateQueue() {
-        let setupExpectation = expectation(description: "set up completion called")
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            XCTAssertEqual(self.sut.backgroundContext.concurrencyType, .privateQueueConcurrencyType)
-            setupExpectation.fulfill()
+        CoreDataManager.setUp(storeType: NSInMemoryStoreType) { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let sut = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
+            
+            XCTAssertEqual(sut.backgroundContext.concurrencyType, .privateQueueConcurrencyType)
         }
         
         waitForExpectations(timeout: 1.0)
     }
     
     func test_givenASetUpStack_thenMainContextIsTheMainQueue() {
-        let setupExpectation = expectation(description: "set up completion called")
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            XCTAssertEqual(self.sut.mainContext.concurrencyType, .mainQueueConcurrencyType)
-            setupExpectation.fulfill()
+        CoreDataManager.setUp(storeType: NSInMemoryStoreType) { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let sut = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
+            
+            XCTAssertEqual(sut.mainContext.concurrencyType, .mainQueueConcurrencyType)
         }
         
         waitForExpectations(timeout: 1.0)
     }
     
     func test_givenASetUpStack_thenBackgroundContextMergePolicyIsPropertyObjectTrump() {
-        let setupExpectation = expectation(description: "set up completion called")
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            XCTAssertTrue(self.sut.backgroundContext.mergePolicy is NSMergePolicy)
-            XCTAssertEqual((self.sut.backgroundContext.mergePolicy as? NSMergePolicy)?.mergeType, .mergeByPropertyObjectTrumpMergePolicyType)
-            setupExpectation.fulfill()
+        CoreDataManager.setUp(storeType: NSInMemoryStoreType) { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let sut = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
+            
+            XCTAssertTrue(sut.backgroundContext.mergePolicy is NSMergePolicy)
+            XCTAssertEqual((sut.backgroundContext.mergePolicy as? NSMergePolicy)?.mergeType, .mergeByPropertyObjectTrumpMergePolicyType)
         }
         
         waitForExpectations(timeout: 1.0)
     }
-
+    
     func test_givenASetUpStack_thenMainContextAutomaticallyMergesChangesFromParent() {
-        let setupExpectation = expectation(description: "set up completion called")
+        let setUpExpectation = expectation(description: "SetUp completion called")
         
-        sut.setup(storeType: NSInMemoryStoreType) {
-            XCTAssertTrue(self.sut.mainContext.automaticallyMergesChangesFromParent)
-            setupExpectation.fulfill()
+        CoreDataManager.setUp(storeType: NSInMemoryStoreType) { result in
+            defer { setUpExpectation.fulfill() }
+            
+            guard let sut = try? result.get() else {
+                XCTFail("Failed to set up Core Data stack")
+                return
+            }
+            
+            XCTAssertTrue(sut.mainContext.automaticallyMergesChangesFromParent)
         }
         
         waitForExpectations(timeout: 1.0)

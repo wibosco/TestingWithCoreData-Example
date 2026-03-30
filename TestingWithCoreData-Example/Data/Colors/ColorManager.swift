@@ -14,19 +14,20 @@ class ColorManager {
     
     // MARK: - Init
     
-    init(backgroundContext: NSManagedObjectContext = CoreDataManager.shared.backgroundContext) {
+    init(backgroundContext: NSManagedObjectContext) {
         self.backgroundContext = backgroundContext
     }
     
     // MARK: - Create
     
-    func createColor() {
+    func createColor(withDate date: Date = Date()) {
         backgroundContext.performAndWait {
-            let color = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: backgroundContext) as! Color
+            let color = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                            into: backgroundContext) as! Color
             color.hex = UIColor.random.hexString
-            color.dateCreated = Date()
+            color.dateCreated = date
             
-            try! backgroundContext.save()
+            try? backgroundContext.save()
         }
     }
     
@@ -37,6 +38,7 @@ class ColorManager {
         backgroundContext.performAndWait {
             if let colorInContext = try? backgroundContext.existingObject(with: objectID) {
                 backgroundContext.delete(colorInContext)
+                
                 try? backgroundContext.save()
             }
         }

@@ -13,34 +13,33 @@ import CoreData
 
 class ColorManagerTests: XCTestCase {
     var sut: ColorManager!
-    
-    var coreDataStack: TestCoreDataStack!
+    var coreDataManager: CoreDataManager!
     
     // MARK: - Lifecycle
     
     override func setUp() {
         super.setUp()
         
-        coreDataStack = TestCoreDataStack()
+        coreDataManager = CoreDataManager.setUpForTesting()
         
-        sut = ColorManager(backgroundContext: coreDataStack.backgroundContext)
+        sut = ColorManager(backgroundContext: coreDataManager.backgroundContext)
     }
     
     // MARK: - Tests
     
     // MARK: Init
     
-    func test_whenColorsDataManagerIsInitialised_thenContextIsSetUp() {
-        XCTAssertEqual(sut.backgroundContext, coreDataStack.backgroundContext)
+    func test_whenColorManagerIsInitialised_thenContextIsSetUp() {
+        XCTAssertEqual(sut.backgroundContext, coreDataManager.backgroundContext)
     }
     
     // MARK: Create
     
     func test_whenCreateColorIsCalled_thenAColorRecordIsCreated() {
-        sut.createColor()
+        sut.createColor(withDate: Date.distantPast)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
-        let colors = try! coreDataStack.backgroundContext.fetch(request)
+        let colors = try! coreDataManager.backgroundContext.fetch(request)
         
         guard let color = colors.first else {
             XCTFail("color missing")
@@ -49,7 +48,7 @@ class ColorManagerTests: XCTestCase {
         
         XCTAssertEqual(colors.count, 1)
         XCTAssertNotNil(color.hex)
-        XCTAssertEqual(color.dateCreated?.timeIntervalSinceNow ?? 0, Date().timeIntervalSinceNow, accuracy: 0.1)
+        XCTAssertEqual(color.dateCreated, Date.distantPast)
     }
     
     func test_whenCreateColorIsCalledMultipleTimes_thenMultipleColorRecordsAreCreated() {
@@ -57,7 +56,7 @@ class ColorManagerTests: XCTestCase {
         sut.createColor()
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
-        let colors = try! coreDataStack.backgroundContext.fetch(request)
+        let colors = try! coreDataManager.backgroundContext.fetch(request)
         
         XCTAssertEqual(colors.count, 2)
         XCTAssertNotEqual(colors[0].hex, colors[1].hex)
@@ -66,14 +65,17 @@ class ColorManagerTests: XCTestCase {
     // MARK: Deletion
     
     func test_whenDeleteColorIsCalled_thenColorRecordIsDeleted() {
-        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
-        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
-        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
+        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
+        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
+        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
         
         sut.deleteColor(color: colorB)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
-        let backgroundContextColors = try! coreDataStack.backgroundContext.fetch(request)
+        let backgroundContextColors = try! coreDataManager.backgroundContext.fetch(request)
         
         XCTAssertEqual(backgroundContextColors.count, 2)
         XCTAssertTrue(backgroundContextColors.contains(colorA))
@@ -81,16 +83,19 @@ class ColorManagerTests: XCTestCase {
     }
     
     func test_givenAColorInstanceFromTheMainContext_whenDeleteColorIsCalled_thenColorRecordIsDeleted() {
-        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
-        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
-        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
+        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
+        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
+        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
         
-        let mainContextColor = coreDataStack.mainContext.object(with: colorB.objectID) as! Color
+        let mainContextColor = coreDataManager.mainContext.object(with: colorB.objectID) as! Color
         
         sut.deleteColor(color: mainContextColor)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
-        let backgroundContextColors = try! coreDataStack.backgroundContext.fetch(request)
+        let backgroundContextColors = try! coreDataManager.backgroundContext.fetch(request)
         
         XCTAssertEqual(backgroundContextColors.count, 2)
         XCTAssertTrue(backgroundContextColors.contains(colorA))
@@ -98,15 +103,18 @@ class ColorManagerTests: XCTestCase {
     }
     
     func test_givenAnAlreadyDeletedColor_whenDeleteColorIsCalledAgain_thenNoAdditionalRecordsAreDeleted() {
-        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
-        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
-        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className, into: coreDataStack.backgroundContext) as! Color
+        let colorA = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
+        let colorB = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
+        let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className,
+                                                         into: coreDataManager.backgroundContext) as! Color
         
         sut.deleteColor(color: colorB)
         sut.deleteColor(color: colorB)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
-        let colors = try! coreDataStack.backgroundContext.fetch(request)
+        let colors = try! coreDataManager.backgroundContext.fetch(request)
         
         XCTAssertEqual(colors.count, 2)
         XCTAssertTrue(colors.contains(colorA))
