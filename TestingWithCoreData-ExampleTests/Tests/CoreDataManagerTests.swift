@@ -8,12 +8,10 @@
 
 import XCTest
 import CoreData
+
 @testable import TestingWithCoreData_Example
 
 class CoreDataManagerTests: XCTestCase {
-    
-    // MARK: Properties
-    
     var sut: CoreDataManager!
     
     // MARK: - Lifecycle
@@ -24,21 +22,27 @@ class CoreDataManagerTests: XCTestCase {
         sut = CoreDataManager()
     }
     
+    override func tearDown() {
+        super.tearDown()
+        
+        sut.persistentContainer.destroyPersistentStore()
+    }
+    
     // MARK: - Tests
     
     // MARK: Setup
 
-    func test_setup_completionCalled() {
+    func test_givenAFreshStack_whenSetupFinishes_thenCompletionIsCalled() {
         let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup(storeType: NSInMemoryStoreType) {
             setupExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 1.0, handler: nil)
+        waitForExpectations(timeout: 1.0)
     }
     
-    func test_setup_persistentStoreCreated() {
+    func test_givenNoSetup_whenSetupFinishes_thenPersistentStoreIsCreated() {
        let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup(storeType: NSInMemoryStoreType) {
@@ -50,7 +54,7 @@ class CoreDataManagerTests: XCTestCase {
         }
     }
     
-    func test_setup_persistentContainerLoadedOnDisk() {
+    func test_givenNoSetup_whenSetupFinishes_thenPersistentContainerLoadedOnDisk() {
         let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup {
@@ -58,12 +62,10 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 1.0) { (_) in
-            self.sut.persistentContainer.destroyPersistentStore()
-        }
+        waitForExpectations(timeout: 1.0)
     }
     
-    func test_setup_persistentContainerLoadedInMemory() {
+    func test_givenNoSetup_whenSetupFinishes_thenPersistentContainerLoadedInMemory() {
         let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup(storeType: NSInMemoryStoreType) {
@@ -71,12 +73,12 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 1.0, handler: nil)
+        waitForExpectations(timeout: 1.0)
     }
     
     // MARK: Contexts
     
-    func test_backgroundContext_concurrencyType() {
+    func test_givenASetUpStack_thenBackgroundContextIsAPrivateQueue() {
         let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup(storeType: NSInMemoryStoreType) {
@@ -84,10 +86,10 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 1.0, handler: nil)
+        waitForExpectations(timeout: 1.0)
     }
     
-    func test_mainContext_concurrencyType() {
+    func test_givenASetUpStack_thenMainContextIsTheMainQueue() {
         let setupExpectation = expectation(description: "set up completion called")
         
         sut.setup(storeType: NSInMemoryStoreType) {
@@ -95,6 +97,6 @@ class CoreDataManagerTests: XCTestCase {
             setupExpectation.fulfill()
         }
         
-        waitForExpectations(timeout: 1.0, handler: nil)
+        waitForExpectations(timeout: 1.0)
     }
 }

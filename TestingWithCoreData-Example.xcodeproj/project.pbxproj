@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,6 @@
 		3D5245CD20541D3100F1E9B5 /* NSObject+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */; };
 		3D7334212067B207002D8317 /* NSPersistentContainer+Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */; };
 		3D9BA5A32055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */; };
-		3D9C5CB52054A675007CF294 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C5CB22054A675007CF294 /* CoreDataTestStack.swift */; };
 		3D9C5CB62054A675007CF294 /* ColorsDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */; };
 		3DEFB29F2051D77000BB7785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DEFB2922051D77000BB7785 /* Assets.xcassets */; };
 		3DEFB2A42051D77000BB7785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB29D2051D77000BB7785 /* AppDelegate.swift */; };
@@ -27,6 +26,8 @@
 		3DEFB3002053467500BB7785 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */; };
 		3DEFB3012053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB2FF2053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel */; };
 		3DEFB3042053469A00BB7785 /* ColorsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFB3032053469A00BB7785 /* ColorsDataManager.swift */; };
+		438E64D92F7AC61A00317045 /* NSManagedObjectContextSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E64D72F7AC61A00317045 /* NSManagedObjectContextSpy.swift */; };
+		438E64DA2F7AC61A00317045 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E64D62F7AC61A00317045 /* CoreDataTestStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,6 @@
 		3D5245CC20541D3100F1E9B5 /* NSObject+Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Name.swift"; sourceTree = "<group>"; };
 		3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Store.swift"; sourceTree = "<group>"; };
 		3D9BA5A22055A24F005112E9 /* CollectionViewFetchedResultsControllerDelegateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewFetchedResultsControllerDelegateHandler.swift; sourceTree = "<group>"; };
-		3D9C5CB22054A675007CF294 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
 		3D9C5CB42054A675007CF294 /* ColorsDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsDataManagerTests.swift; sourceTree = "<group>"; };
 		3DEFB26C2051D69400BB7785 /* TestingWithCoreData-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestingWithCoreData-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DEFB2822051D69400BB7785 /* TestingWithCoreData-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TestingWithCoreData-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +64,8 @@
 		3DEFB2FD2053467500BB7785 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3DEFB2FF2053467500BB7785 /* TestingWithCoreData_Example.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestingWithCoreData_Example.xcdatamodel; sourceTree = "<group>"; };
 		3DEFB3032053469A00BB7785 /* ColorsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsDataManager.swift; sourceTree = "<group>"; };
+		438E64D62F7AC61A00317045 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
+		438E64D72F7AC61A00317045 /* NSManagedObjectContextSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,6 @@
 		3D9C5CB12054A675007CF294 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3D9C5CB22054A675007CF294 /* CoreDataTestStack.swift */,
 				3D7334202067B207002D8317 /* NSPersistentContainer+Store.swift */,
 			);
 			path = Helpers;
@@ -152,6 +153,7 @@
 		3DEFB2852051D69400BB7785 /* TestingWithCoreData-ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				438E64D82F7AC61A00317045 /* Doubles */,
 				3D9C5CB12054A675007CF294 /* Helpers */,
 				3D9C5CB32054A675007CF294 /* Tests */,
 				3DEFB2882051D69400BB7785 /* Info.plist */,
@@ -274,6 +276,15 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		438E64D82F7AC61A00317045 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				438E64D62F7AC61A00317045 /* CoreDataTestStack.swift */,
+				438E64D72F7AC61A00317045 /* NSManagedObjectContextSpy.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,8 +329,9 @@
 		3DEFB2642051D69400BB7785 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 2630;
 				ORGANIZATIONNAME = "William Boles";
 				TargetAttributes = {
 					3DEFB26B2051D69400BB7785 = {
@@ -397,10 +409,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9C5CB52054A675007CF294 /* CoreDataTestStack.swift in Sources */,
 				3D7334212067B207002D8317 /* NSPersistentContainer+Store.swift in Sources */,
 				3D1D9C5F20574757007C70D3 /* CoreDataManagerTests.swift in Sources */,
 				3D9C5CB62054A675007CF294 /* ColorsDataManagerTests.swift in Sources */,
+				438E64D92F7AC61A00317045 /* NSManagedObjectContextSpy.swift in Sources */,
+				438E64DA2F7AC61A00317045 /* CoreDataTestStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +469,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -463,8 +477,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -476,6 +492,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -490,12 +507,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -513,6 +532,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -520,8 +540,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -533,6 +555,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -541,10 +564,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -555,11 +581,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "TestingWithCoreData-Example/Application/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.williamboles.TestingWithCoreData-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -569,26 +602,40 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "TestingWithCoreData-Example/Application/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.williamboles.TestingWithCoreData-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		3DEFB28F2051D69400BB7785 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "TestingWithCoreData-ExampleTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.williamboles.TestingWithCoreData-ExampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestingWithCoreData-Example.app/TestingWithCoreData-Example";
 			};
 			name = Debug;
@@ -596,15 +643,22 @@
 		3DEFB2902051D69400BB7785 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "TestingWithCoreData-ExampleTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.williamboles.TestingWithCoreData-ExampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestingWithCoreData-Example.app/TestingWithCoreData-Example";
 			};
 			name = Release;

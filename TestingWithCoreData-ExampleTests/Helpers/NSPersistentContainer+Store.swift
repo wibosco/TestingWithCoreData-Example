@@ -8,10 +8,10 @@
 
 import Foundation
 import CoreData
+
 @testable import TestingWithCoreData_Example
 
 extension NSPersistentContainer {
-    
     func destroyPersistentStore() {
         guard let storeURL = persistentStoreDescriptions.first?.url,
             let storeType = persistentStoreDescriptions.first?.type else {

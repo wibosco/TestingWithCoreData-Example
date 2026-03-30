@@ -21,7 +21,7 @@ class ColorsViewController: UIViewController {
         let sideLength = (collectionView.frame.size.width - 4.0)/3
         
         flowLayout.itemSize = CGSize(width: sideLength, height: sideLength)
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumInteritemSpacing = 2.0
         flowLayout.minimumLineSpacing = 2.0
  

@@ -8,12 +8,10 @@
 
 import XCTest
 import CoreData
+
 @testable import TestingWithCoreData_Example
 
 class ColorsDataManagerTests: XCTestCase {
-    
-    // MARK: Properties
-    
     var sut: ColorsDataManager!
     
     var coreDataStack: CoreDataTestStack!
@@ -32,13 +30,13 @@ class ColorsDataManagerTests: XCTestCase {
     
     // MARK: Init
     
-    func test_init_contexts() {
+    func test_whenColorsDataManagerIsInitialised_thenContextIsSetUp() {
         XCTAssertEqual(sut.backgroundContext, coreDataStack.backgroundContext)
     }
     
     // MARK: Create
     
-    func test_createColor_colorCreated() {
+    func test_whenCreateColorIsCalled_thenAColorRecordIsCreated() {
         let performAndWaitExpectation = expectation(description: "background perform and wait")
         coreDataStack.backgroundContext.expectation = performAndWaitExpectation
         
@@ -62,7 +60,7 @@ class ColorsDataManagerTests: XCTestCase {
     
     // MARK: Deletion
     
-    func test_deleteColor_colorDeleted() {
+    func test_whenDeleteColorIsCalled_thenColorRecordIsDeleted() {
         let performAndWaitExpectation = expectation(description: "background perform and wait")
         coreDataStack.backgroundContext.expectation = performAndWaitExpectation
         
@@ -83,7 +81,7 @@ class ColorsDataManagerTests: XCTestCase {
         }
     }
     
-    func test_deleteColor_switchingContexts_colorDeleted() {
+    func test_givenAColorInstanceFromTheMainContext_whenDeleteColorIsCalled_thenColorRecordIsDeleted() {
         let performAndWaitExpectation = expectation(description: "background perform and wait")
         coreDataStack.backgroundContext.expectation = performAndWaitExpectation
         
