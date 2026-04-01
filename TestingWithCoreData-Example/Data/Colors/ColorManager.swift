@@ -20,11 +20,12 @@ class ColorManager {
     
     // MARK: - Create
     
-    func createColor(withDate date: Date = Date()) {
+    func createColor(hex: String = UIColor.random.hexString,
+                     date: Date = Date()) {
         backgroundContext.performAndWait {
             let color = NSEntityDescription.insertNewObject(forEntityName: Color.className,
                                                             into: backgroundContext) as! Color
-            color.hex = UIColor.random.hexString
+            color.hex = hex
             color.dateCreated = date
             
             try? backgroundContext.save()
@@ -33,7 +34,7 @@ class ColorManager {
     
     // MARK: - Deletion
     
-    func deleteColor(color: Color) {
+    func deleteColor(_ color: Color) {
         let objectID = color.objectID
         backgroundContext.performAndWait {
             if let colorInContext = try? backgroundContext.existingObject(with: objectID) {

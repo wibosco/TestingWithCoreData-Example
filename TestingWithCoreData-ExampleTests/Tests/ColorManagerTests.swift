@@ -36,7 +36,11 @@ class ColorManagerTests: XCTestCase {
     // MARK: Create
     
     func test_whenCreateColorIsCalled_thenAColorRecordIsCreated() {
-        sut.createColor(withDate: Date.distantPast)
+        let hex = UIColor.random.hexString
+        let date = Date.distantPast
+        
+        sut.createColor(hex: hex,
+                        date: date)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
         let colors = try! coreDataManager.backgroundContext.fetch(request)
@@ -47,8 +51,8 @@ class ColorManagerTests: XCTestCase {
         }
         
         XCTAssertEqual(colors.count, 1)
-        XCTAssertNotNil(color.hex)
-        XCTAssertEqual(color.dateCreated, Date.distantPast)
+        XCTAssertEqual(color.hex, hex)
+        XCTAssertEqual(color.dateCreated, date)
     }
     
     func test_whenCreateColorIsCalledMultipleTimes_thenMultipleColorRecordsAreCreated() {
@@ -72,7 +76,7 @@ class ColorManagerTests: XCTestCase {
         let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className,
                                                          into: coreDataManager.backgroundContext) as! Color
         
-        sut.deleteColor(color: colorB)
+        sut.deleteColor(colorB)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
         let backgroundContextColors = try! coreDataManager.backgroundContext.fetch(request)
@@ -92,7 +96,7 @@ class ColorManagerTests: XCTestCase {
         
         let mainContextColor = coreDataManager.mainContext.object(with: colorB.objectID) as! Color
         
-        sut.deleteColor(color: mainContextColor)
+        sut.deleteColor(mainContextColor)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
         let backgroundContextColors = try! coreDataManager.backgroundContext.fetch(request)
@@ -110,8 +114,8 @@ class ColorManagerTests: XCTestCase {
         let colorC = NSEntityDescription.insertNewObject(forEntityName: Color.className,
                                                          into: coreDataManager.backgroundContext) as! Color
         
-        sut.deleteColor(color: colorB)
-        sut.deleteColor(color: colorB)
+        sut.deleteColor(colorB)
+        sut.deleteColor(colorB)
         
         let request = NSFetchRequest<Color>(entityName: Color.className)
         let colors = try! coreDataManager.backgroundContext.fetch(request)

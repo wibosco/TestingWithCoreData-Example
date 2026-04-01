@@ -99,6 +99,6 @@ extension ColorsViewController: UICollectionViewDelegate {
             return
         }
         
-        colorManager.deleteColor(color: color)
+        colorManager.deleteColor(color)
     }
 }
